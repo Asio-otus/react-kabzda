@@ -1,28 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 // ---TYPES
-type RatingPropsType = {
-    value: 0 | 1 | 2 | 3 | 4 | 5;
-}
-
-type RatingStarPropsType = {
-    selected: boolean;
-}
+    type RatingStarPT = {
+        selected: boolean;
+    }
 // TYPES---
 
-export function Rating(props: RatingPropsType) {
+export function Rating() {
+
+    let [value, setValue] = useState<number>(0)
+
     return (
         <div>
-            <RatingStar selected={props.value > 0}/>
-            <RatingStar selected={props.value > 1}/>
-            <RatingStar selected={props.value > 2}/>
-            <RatingStar selected={props.value > 3}/>
-            <RatingStar selected={props.value > 4}/>
+            <RatingStar selected={value > 0}/><button onClick={ () => {setValue(1)} }>1</button>
+            <RatingStar selected={value > 1}/><button onClick={ () => {setValue(2)} }>2</button>
+            <RatingStar selected={value > 2}/><button onClick={ () => {setValue(3)} }>3</button>
+            <RatingStar selected={value > 3}/><button onClick={ () => {setValue(4)} }>4</button>
+            <RatingStar selected={value > 4}/><button onClick={ () => {setValue(5)} }>5</button>
         </div>
     )
 }
 
-function RatingStar(props: RatingStarPropsType) {
+function RatingStar(props: RatingStarPT) {
     if (props.selected) {
         return <span><b>star</b></span>
     } else {
