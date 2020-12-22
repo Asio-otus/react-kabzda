@@ -1,39 +1,39 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import { Accordion } from './components/Accordion/Accordion';
-import { Rating } from './components/Rating';
-import { Testing } from './components/Testing';
+import {AccordionUncontrolled} from './components/Accordion/AccordionUncontrolled';
+import {RatingUncontrolled} from './components/Rating/RatingUncontrolled';
 import OnOff from './components/OnOff/OnOff';
+import {Rating, RatingValue} from "./components/Rating/Rating";
+import {Accordion} from "./components/Accordion/Accordion";
 
 function App() {
-  return (
-    <div>
-      <PageTitle title={"This is page title ;)"} />
-      <PageTitle title={"Second Title"} />
-      <Rating />
-      <Rating />
-      <Rating />
-      <Rating />
-      <Rating />
-      <Accordion titleValue={"Menu"} />
-      <Accordion titleValue={"Users"} />
 
-      <OnOff />
-      <OnOff />
+    let [ratingValue, setRatingValue] = useState<RatingValue>(0)
 
-      <Testing />
-    </div>
-  )
+    return (
+        <div>
+            <PageTitle title={"This is page title ;)"}/>
+            <PageTitle title={"Second Title"}/>
+
+            <Rating value={ratingValue} onClick={setRatingValue}/>
+            <RatingUncontrolled/>
+            <Accordion titleValue={'Controlled'} collapsed={true}/>
+            <AccordionUncontrolled titleValue={"Uncontrolled"}/>
+
+            <OnOff/>
+            <OnOff/>
+        </div>
+    )
 }
 
 type PageTitlePropsType = {
-  title: string;
+    title: string;
 }
 
 function PageTitle(props: PageTitlePropsType) {
-  return (
-    <h1>{props.title}</h1>
-  )
+    return (
+        <h1>{props.title}</h1>
+    )
 }
 
 
