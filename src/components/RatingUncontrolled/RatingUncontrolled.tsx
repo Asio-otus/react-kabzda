@@ -3,6 +3,10 @@ import React, {useState} from 'react';
 // ---TYPES
 type RatingValue = 0 | 1 | 2 | 3 | 4 | 5
 
+type RatingPropsValue = {
+    defaultValue: RatingValue
+}
+
 type RatingStarPT = {
     selected: boolean
     value: RatingValue
@@ -11,9 +15,9 @@ type RatingStarPT = {
 
 // TYPES---
 
-export function RatingUncontrolled() {
+export function RatingUncontrolled(props: RatingPropsValue) {
 
-    let [value, setValue] = useState<RatingValue>(0)
+    let [value, setValue] = useState<RatingValue>(props.defaultValue)
 
     return (
         <div>
