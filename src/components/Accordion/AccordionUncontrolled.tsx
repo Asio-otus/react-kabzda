@@ -13,14 +13,14 @@ type AccordionTitlePropsType = {
 
 export function AccordionUncontrolled(props: AccordionPropsType) {
 
-    let [toggle, setToggle] = useState(false)
+    let [collapsed, setCollapsed] = useState(false)
 
     return (
         <div>
             <AccordionTitle title={props.titleValue} onClick={() => {
-                setToggle(!toggle)
+                setCollapsed(!collapsed)
             }}/>
-            {!toggle && <AccordionBody/>}
+            {!collapsed && <AccordionBody/>}
         </div>
     )
 }

@@ -2,20 +2,20 @@ import React from 'react';
 
 type AccordionPropsType = {
     titleValue: string
-    toggle: boolean
+    collapsed: boolean
     onClick: (toggle: boolean) => void
 }
 type AccordionTitleProps = {
     title: string
-    toggle: boolean
+    collapsed: boolean
     onClick: (toggle: boolean) => void
 }
 
 export function Accordion(props: AccordionPropsType) {
     return (
         <div>
-            <AccordionTitle title={props.titleValue} onClick={props.onClick} toggle={props.toggle}/>
-            {!props.toggle && <AccordionBody/>}
+            <AccordionTitle title={props.titleValue} onClick={props.onClick} collapsed={props.collapsed}/>
+            {!props.collapsed && <AccordionBody/>}
         </div>
     )
 }
@@ -23,7 +23,7 @@ export function Accordion(props: AccordionPropsType) {
 function AccordionTitle(props: AccordionTitleProps) {
     return (
         <h3 onClick={ () => {
-            props.onClick(!props.toggle)
+            props.onClick(!props.collapsed)
         }}> {props.title} </h3>
     )
 }
