@@ -20,11 +20,13 @@ function App() {
 
             <Rating value={ratingValue}
                     onClick={setRatingValue}/>
-            <RatingUncontrolled/>
+            <RatingUncontrolled defaultValue={0}/>
 
             <Accordion titleValue={'Controlled'}
                        collapsed={accordionCollapsed}
-                       onClick={setAccordionCollapsed}/>
+                       onChange={setAccordionCollapsed}
+                       items={[{title: 'Dymich', value: 1}, {title: 'Valera', value: 2}, {title: 'Artiom', value: 3}, {title: 'Victor', value: 4}]}
+                       onClick={x=>x}/>
             <AccordionUncontrolled titleValue={"Uncontrolled"}/>
 
             <OnOff on={on}
