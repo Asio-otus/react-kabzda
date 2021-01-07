@@ -1,49 +1,35 @@
-import React, {DetailedHTMLProps, Dispatch, HTMLAttributes, SetStateAction} from "react";
-import {selectValueType} from "../../App";
+import React, {useState} from "react"
+import styles from './Select.module.css'
 
-type itemsType = {
+type ItemType = {
     title: string
     value: any
 }
 
 type SelectPropsType = {
-    value: selectValueType
-    collapsed: boolean
+    value?: any
     onChange: (value: any) => void
-    items: itemsType[]
-    selectValue: Dispatch<SetStateAction<selectValueType>>
-}
-
-type SelectMenuPropsType = {
-    collapsed: boolean
-    onChange: (value: any) => void
-    items: itemsType[]
-    selectValue: Dispatch<SetStateAction<selectValueType>>
+    items: ItemType[]
 }
 
 export function Select(props: SelectPropsType) {
-    return (
-        <div>
-            <div onClick={() => {
-                props.onChange(!props.collapsed)
-            }}>{props.value.title}</div>
-            {!props.collapsed && <SelectMenu
-                items={props.items}
-                selectValue={props.selectValue}
-                onChange={props.onChange}
-                collapsed={props.collapsed}/>}
-        </div>
-    )
-}
+    const selectedItem = props.items.find(i => i.value === props.value)
+    const toggleItems = () => setActive(!active)
 
-function SelectMenu(props: SelectMenuPropsType) {
+    const [active, setActive] = useState(false);
 
     return (
-        <div>
-            {props.items.map(i => <div onClick={() => {
-                props.selectValue(i);
-                props.onChange(!props.collapsed)
-            }}>{i.title}</div>)}
+        <div className={styles.select}>
+            <span className={styles.main} onClick={toggleItems}>{selectedItem && selectedItem.title}</span>
+            {
+                active &&
+                <div className={styles.items}>
+                    {props.items.map(i => <div
+                        key={i.value}
+                        onClick={() => {props.onChange(i.value)}}
+                    >{i.title}</div>)}
+                </div>
+            }
         </div>
     )
 }
