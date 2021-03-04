@@ -14,7 +14,7 @@ export const Clock: React.FC<PropsType> = (props) => {
         }, 1000)
 
         return () => {
-            clearInterval(intervalID)
+            clearInterval(intervalID) // Killing setInterval when the component Clock unmounts
         }
     }, [])
 
